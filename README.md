@@ -112,21 +112,18 @@ Useful · Observable · Modular
 <tr>
 <td width="50%" valign="top">
 
-## 🖥️ HomeLab OS
-### Infrastructure Command Center
+## <img src="https://raw.githubusercontent.com/johnvexcoder/nexora-lab/refs/heads/nexora/redesign/frontend/public/branding/nexora-core-80.png" width="30" height="30" alt="Nexora icon"> Nexora Lab
+### Infrastructure Operations Dashboard
 
-A self-hosted, NOC-style platform for viewing a homelab as **one operating environment** instead of a collection of disconnected machines and dashboards.
+A self-hosted dashboard that brings host metrics, Proxmox guests, Docker workloads, network topology, alerts, and administration into one infrastructure view. Nexora Agent provides host-local telemetry.
 
 **Engineering surface**
 
-- live server and fleet telemetry
-- network topology
-- hardware metrics
-- alerts and operational views
-- Docker visibility
-- historical data
-- provider-oriented integrations
-- administration and control surfaces
+- live host metrics and history charts
+- Proxmox guest and Docker workload visibility
+- network topology and alerts
+- agent telemetry with optional direct Proxmox integration
+- role-based administration, backups, and recovery tools
 
 **Built with**
 
@@ -134,26 +131,23 @@ A self-hosted, NOC-style platform for viewing a homelab as **one operating envir
 
 <br>
 
-**[View HomeLab OS →](https://github.com/johnvexcoder/HomeLab-OS)**
+**[View Nexora Lab →](https://github.com/johnvexcoder/nexora-lab)**
 
 </td>
 <td width="50%" valign="top">
 
-## 🤖 HomeLab Agent
-### Node Intelligence Layer
+## <img src="https://raw.githubusercontent.com/johnvexcoder/nexora-lab/refs/heads/nexora/redesign/frontend/public/branding/nexora-core-80.png" width="30" height="30" alt="Nexora icon"> Nexora Agent
+### Host Telemetry Agent
 
-A lightweight agent designed to run close to the host and expose information that central infrastructure APIs do not always provide.
+A modular Linux agent that collects node-local telemetry and reports it outbound to Nexora Lab. Its capability-based plugins run only where the host supports them.
 
 **Telemetry surface**
 
-- CPU, memory, and storage
-- hardware sensors and temperatures
-- SMART health
-- Docker information
-- kernel and host details
-- network statistics
-- local system telemetry
-- Proxmox-related enrichment
+- CPU, memory, filesystem, and process metrics
+- Docker containers and compose projects
+- Proxmox node, ZFS, and Ceph telemetry
+- sensors, SMART disk health, and network statistics
+- local system events and host capabilities
 
 **Built with**
 
@@ -161,7 +155,7 @@ A lightweight agent designed to run close to the host and expose information tha
 
 <br>
 
-**[View HomeLab Agent →](https://github.com/johnvexcoder/HomeLab-Agent)**
+**[View Nexora Agent →](https://github.com/johnvexcoder/nexora-agent)**
 
 </td>
 </tr>
@@ -280,6 +274,8 @@ A self-hosted media application that turns local or network-attached storage int
 </tr>
 </table>
 
+<sub>Nexora Lab and Nexora Agent are release candidates. Clean-host installation, HTTPS, upgrade, and recovery acceptance remain open; see the <a href="https://github.com/johnvexcoder/nexora-lab/blob/nexora/redesign/RELEASE-CHECKLIST.md">release checklist</a>.</sub>
+
 <br>
 
 <div align="center">
@@ -292,16 +288,16 @@ A self-hosted media application that turns local or network-attached storage int
 
 # 03 · Systems Architecture
 
-## The HomeLab ecosystem
+## The Nexora ecosystem
 
-HomeLab OS and HomeLab Agent are intentionally separate.
+Nexora Lab and Nexora Agent are separate projects with a shared, versioned telemetry protocol.
 
 The dashboard owns the **operational experience**.  
 The agent owns **node-local enrichment**.
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────┐
-│                              HOME LAB OS                                   │
+│                              NEXORA LAB                                    │
 │                                                                            │
 │   Fleet · Servers · Topology · Telemetry · Alerts · Administration         │
 └────────────────────────────────┬───────────────────────────────────────────┘
@@ -311,7 +307,7 @@ The agent owns **node-local enrichment**.
                ┌─────────────────┴──────────────────┐
                │                                    │
       ┌────────▼─────────┐                ┌─────────▼─────────┐
-      │ Infrastructure   │                │   HomeLab Agent   │
+      │ Infrastructure   │                │   Nexora Agent   │
       │ Providers        │                │                   │
       │                  │                │ Node-local        │
       │ Proxmox / APIs   │                │ enrichment        │
@@ -332,9 +328,9 @@ The agent owns **node-local enrichment**.
 
 | Layer | Responsibility |
 |:--|:--|
-| **HomeLab OS** | presentation, fleet state, alerts, topology, workflows |
+| **Nexora Lab** | dashboard, fleet state, alerts, topology, administration |
 | **Infrastructure providers** | authoritative platform / infrastructure data |
-| **HomeLab Agent** | host-only telemetry and machine-local enrichment |
+| **Nexora Agent** | outbound host telemetry and machine-local enrichment |
 | **Linux / Docker / hardware** | raw operating environment |
 
 The result is a system where richer telemetry can be added without forcing the dashboard to become tightly coupled to one operating system, one hypervisor, or one hardware layout.
@@ -392,8 +388,8 @@ Media systems
 
 ```text
 ┌────┬────────────────┬────────────────────────────────────────────────────┐
-│ 01 │ HomeLab OS     │ Infrastructure visibility and operations           │
-│ 02 │ HomeLab Agent  │ Host telemetry and system enrichment               │
+│ 01 │ Nexora Lab     │ Infrastructure visibility and operations           │
+│ 02 │ Nexora Agent   │ Host telemetry and system enrichment               │
 │ 03 │ DistroZSH      │ Lightweight Linux shell experience                 │
 │ 04 │ Python-Keybr   │ Terminal training and keyboard diagnostics         │
 │ 05 │ CompressMe     │ Image optimization for users and automation        │
