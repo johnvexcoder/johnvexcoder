@@ -246,7 +246,7 @@ A curses-based typing environment that combines practice, persistent progress, a
 </td>
 <td width="50%" valign="top">
 
-## 🎬 MovieFlix
+## <img src="https://raw.githubusercontent.com/johnvexcoder/MovieFlix/refs/heads/main/public/logo.svg" width="30" height="30" alt="MovieFlix logo"> MovieFlix
 ### Private Media Platform
 
 A self-hosted media application that turns local or network-attached storage into a complete streaming environment.
